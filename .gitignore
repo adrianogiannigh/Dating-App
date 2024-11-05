@@ -1,5 +1,6 @@
 comandos_dotnet.txt
 pasos_proyecto.txt
-bin/
-obj/
+##bin/
+##obj/
 .vs/
+/API/appsettings.json
