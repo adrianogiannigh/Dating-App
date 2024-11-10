@@ -9,9 +9,10 @@ namespace API.Controllers
     /// <summary>
     /// Controlador de Usuarios 
     /// </summary>
-    [Route("api/[controller]")] //api/users
-    [ApiController]
-    public class UsersController(DataContext context) : ControllerBase
+    //[Route("api/[controller]")] //api/users
+    //[ApiController]
+
+    public class UsersController(DataContext context) : BaseApiController
     {
 
         #region Fields
