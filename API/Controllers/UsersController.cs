@@ -1,5 +1,6 @@
 ﻿using API.Data;
 using API.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -10,15 +11,9 @@ namespace API.Controllers
     /// Controlador de Usuarios 
     /// </summary>
     //[Route("api/[controller]")] //api/users
-    //[ApiController]
-
+    //[ApiController]    
     public class UsersController(DataContext context) : BaseApiController
     {
-
-        #region Fields
-
-
-        #endregion
 
         #region Endpoints 
 
@@ -26,6 +21,7 @@ namespace API.Controllers
         /// Método para obtener la lista de usuarios. 
         /// </summary>
         /// <returns></returns>
+        [AllowAnonymous]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<AppUser>>> GetUsers()
         {
@@ -38,6 +34,7 @@ namespace API.Controllers
         /// Método para obtener un usuario específico dado su ID. 
         /// </summary>
         /// <returns></returns>
+        [Authorize]
         [HttpGet("{id:int}")] // api/users/2
         public async Task<ActionResult<AppUser>> GetUserById(int id)
         {
