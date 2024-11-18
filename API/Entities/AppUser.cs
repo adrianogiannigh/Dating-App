@@ -13,9 +13,20 @@
         public int Id { get; set; }
 
         /// <summary>
-        /// Nombre del usuario. 
+        /// Nombre del usuario requerido.
         /// </summary>
         public required string UserName { get; set; }
+
+        /// <summary>
+        /// Hash de Password requerida.
+        /// </summary>
+        public required byte[] PasswordHash { get; set; }
+
+        /// <summary>
+        /// Salt Password requerida. 
+        /// </summary>
+        public required byte[] PasswordSalt { get; set; }
+
 
         #endregion
 
