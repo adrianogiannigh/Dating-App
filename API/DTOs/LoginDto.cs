@@ -10,6 +10,7 @@
         /// Nombre de Usuario.
         /// </summary>
         public required string UserName { get; set; }
+        
 
         /// <summary>
         /// Passord de Usuario.
