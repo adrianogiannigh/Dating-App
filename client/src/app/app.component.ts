@@ -27,25 +27,28 @@ export class AppComponent implements OnInit{
 
   //--------------------------------------------
 
+  //This function is used in ng Intialization
   ngOnInit(): void {
-    this.getUsers();
-    this.setCurrentUser();    
+    this.getUsers(); //This is used to get the users
+    this.setCurrentUser();    //This is used to set the current user
   }
 
+  //This function is used to set the current user
   setCurrentUser()
   {
-    const userString = localStorage.getItem('user');
-    if(!userString) return;
-    const user = JSON.parse(userString);
-    this.accountService.currentUser.set(user);
+    const userString = localStorage.getItem('user'); //This gets the user data from the local storage
+    if(!userString) return; //This returns if the user data is not found
+    const user = JSON.parse(userString); //This parses the user data to a JSON object
+    this.accountService.currentUser.set(user); //This sets the current user to the user object
   }
 
+  //This function is used to get the users
   getUsers() {
       //getting the endpoint  
-    this.http.get('https://localhost:5001/api/users').subscribe({
-      next: response => this.users = response,
-      error: error => console.log(error),
-      complete: () => console.log('Request has completed')
+    this.http.get('https://localhost:5001/api/users').subscribe({ // It uses the HttpClient get method to get the users
+      next: response => this.users = response,  // This logs the response using next
+      error: error => console.log(error), // This logs the error using error
+      complete: () => console.log('Request has completed') // This logs that the request has completed
     }) // Return an observable of the response body as a JavaScript object
   }
 }

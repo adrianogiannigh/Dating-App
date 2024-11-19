@@ -10,21 +10,26 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
   templateUrl: './nav.component.html',
   styleUrl: './nav.component.css'
 })
+//This component is used to navigate the user
 export class NavComponent {
-accountService = inject(AccountService);
-model : any = {};
+accountService = inject(AccountService); //This is used to inject the AccountService
+model : any = {}; //This object is used to store the user data
+
+//This function is used to login the user
   login() {
-    this.accountService.login(this.model).subscribe({
-      next: response => {
+    //This logs the user data using the AccountService
+    this.accountService.login(this.model).subscribe({    
+      next: response => { //This logs the response using next
         console.log(response);        
       },
-      error: error => {
+      error: error => { //this logs the error using error
         console.log(error);
       }
     })
   }
 
   logout() {
+    //This logs out the user out using the AccountService
     this.accountService.logout();
   }
 }
