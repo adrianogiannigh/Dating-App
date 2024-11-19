@@ -15,7 +15,7 @@ export class AccountService {
   baseUrl = "https://localhost:5001/api/"; //This is the base url of the api
   currentUser = signal<User | null >(null); //This is used to store the current user. 
  
-  //This function is used to register the user
+  //This function is used to login the user
   login(model : any) {
     //This returns the user data using the HttpClient post method
     return this.http.post<User>(this.baseUrl + 'account/login', model).pipe(
@@ -25,6 +25,21 @@ export class AccountService {
           this.currentUser.set(user); //This sets the current user to the user object
         }
       })    
+    );
+  }
+
+  //This function is used to register the user
+  register(model : any) {
+    //This returns the user data using the HttpClient post method
+    return this.http.post<User>(this.baseUrl + 'account/register', model).pipe(
+      map(user => { //This maps the user data to the user object 
+        if(user){
+          localStorage.setItem('user', JSON.stringify(user)); //This stores the user data in the local storage
+          this.currentUser.set(user); //This sets the current user to the user object
+        }
+        return user;
+      })  
+        
     );
   }
 
